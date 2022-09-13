@@ -1,24 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using MyContacts_BAL.Interface;
+using MyContacts_BAL.Service;
+using MyContacts_DAL.EF;
+using MyContacts_DAL.Interface;
+using MyContacts_DAL.Repository;
+using MyContacts.Mapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ContactsContext>();
+builder.Services.AddAutoMapper(typeof(ContactProfile));
+builder.Services.AddScoped<IRepository, Repository>();
+builder.Services.AddScoped<IService, ContactService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",

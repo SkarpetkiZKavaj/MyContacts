@@ -1,31 +1,51 @@
 ﻿using System.Diagnostics;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MyContacts_BAL.DTO;
+using MyContacts_BAL.Interface;
 using MyContacts.Models;
 
 namespace MyContacts.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IMapper _mapper;
+    private readonly IService _contacts;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IMapper mapper, IService contacts)
     {
-        _logger = logger;
+        _mapper = mapper;
+        _contacts = contacts;
     }
 
+    [HttpGet]
     public IActionResult Index()
     {
-        return View();
+        var contacts = _mapper.Map<IEnumerable<ContactDTO>, IEnumerable<ContactViewModel>>(_contacts.GetAll());
+        return View(contacts);
     }
 
-    public IActionResult Privacy()
+    [HttpPost]
+    public IActionResult AddContact(ContactViewModel contact)
     {
-        return View();
+        _contacts.Create(_mapper.Map<ContactViewModel, ContactDTO>(contact));
+        _contacts.Save();
+        return RedirectToAction("Index");
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    [HttpPost]
+    public IActionResult UpdateContact(ContactViewModel contact)
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        _contacts.Update(_mapper.Map<ContactViewModel, ContactDTO>(contact));
+        _contacts.Save();
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public IActionResult DeleteContact(int contactId)
+    {
+        _contacts.Delete(contactId);
+        _contacts.Save();
+        return RedirectToAction("Index");
     }
 }

@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyContacts", "MyContacts\MyContacts.csproj", "{92B22971-754D-401D-937E-D0F76703CAB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyContacts_BAL", "MyContacts_BAL\MyContacts_BAL.csproj", "{5211AF3F-7459-4A19-8E1B-59DB4E6D913B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyContacts_DAL", "MyContacts_DAL\MyContacts_DAL.csproj", "{67547C14-384B-4532-84ED-01AF66C9DF11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{92B22971-754D-401D-937E-D0F76703CAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92B22971-754D-401D-937E-D0F76703CAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92B22971-754D-401D-937E-D0F76703CAB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5211AF3F-7459-4A19-8E1B-59DB4E6D913B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5211AF3F-7459-4A19-8E1B-59DB4E6D913B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5211AF3F-7459-4A19-8E1B-59DB4E6D913B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5211AF3F-7459-4A19-8E1B-59DB4E6D913B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67547C14-384B-4532-84ED-01AF66C9DF11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67547C14-384B-4532-84ED-01AF66C9DF11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67547C14-384B-4532-84ED-01AF66C9DF11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67547C14-384B-4532-84ED-01AF66C9DF11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
