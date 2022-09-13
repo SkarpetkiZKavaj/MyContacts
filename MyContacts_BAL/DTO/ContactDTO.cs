@@ -1,6 +1,6 @@
-namespace MyContacts_DAL.Models;
+namespace MyContacts_BAL.DTO;
 
-public class Contact
+public class ContactDTO
 {
     public int Id { get; set; }
 

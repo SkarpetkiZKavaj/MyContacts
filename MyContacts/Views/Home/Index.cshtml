@@ -1,8 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<ContactViewModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<ul class="list-group list-group-flush bg-transparent">
+    @foreach (var contact in Model)
+    {
+        <li class="list-group-item bg-transparent">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        <p>@contact.Name</p>
+                    </div>
+                    <div class="col-3">
+                        <p>@contact.BirthDate</p>
+                    </div>
+                    <div class="col-3">
+                        <p>@contact.JobTitle</p>
+                    </div>
+                    <div class="col-3">
+                        <p>@contact.MobilePhone</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
