@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+     <script src="lib/jquery/dist/jquery-3.6.1.min.js"></script>
+</head>
+<body class="d-flex flex-column h-100" style="background-color: rgba(247, 245, 242, 1);">
+<header>
+    <nav class="navbar navbar-expand-md fixed-top shadow" style="background-color: rgba(241, 237, 232, 1);">
+        <div class="px-3">
+            <h2>MyContacts</h2>
+        </div>
+    </nav>
+</header>
+<main class="flex-shrink-0 mt-5">
+    <div class="container-fluid mt-5">
+        <div class="row ">
+            <div class="col-sm-12">
+                <div class="p-3 shadow" style="background-color: rgba(241, 237, 232, 1);">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer mt-auto py-3 shadow-lg" style="background-color: rgba(241, 237, 232, 1);">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center p-3">
+                    © 2022 - MyContacts:
+                    <a class="text-black" href="https://github.com/SkarpetkiZKavaj/MyContacts">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

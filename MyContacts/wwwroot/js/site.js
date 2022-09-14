@@ -1,4 +1,12 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// $("#edit").click(function () {
+//     let name = $("#name").val();
+//     let birthdate = $("#birthdate").val();
+//     let job = $("#job").val();
+//     let phone = $("#phone").val();
+//
+//     $("#input_name").value = birthdate;
+//     $("#input_birthdate").value = name;
+//     $("#input_job").value = job;
+//     $("#input_phone").value = phone;
+// });
 
-// Write your JavaScript code.

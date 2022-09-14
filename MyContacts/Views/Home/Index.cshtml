@@ -1,25 +1,87 @@
 ﻿@model IEnumerable<ContactViewModel>
 
-<ul class="list-group list-group-flush bg-transparent">
-    @foreach (var contact in Model)
-    {
+@{
+    Layout = "_Layout";
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FamilyTree</title>
+</head>
+<body>
+<div class="container-fluid">
+    <ul class="list-group list-group-flush bg-transparent">
         <li class="list-group-item bg-transparent">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-3">
-                        <p>@contact.Name</p>
-                    </div>
-                    <div class="col-3">
-                        <p>@contact.BirthDate</p>
-                    </div>
-                    <div class="col-3">
-                        <p>@contact.JobTitle</p>
-                    </div>
-                    <div class="col-3">
-                        <p>@contact.MobilePhone</p>
-                    </div>
+            <div class="row">
+                <div class="col-2">
+                    <b >Name</b>
+                </div>
+                <div class="col-2">
+                    <b>BirthDate</b>
+                </div>
+                <div class="col-2">
+                    <b>JobTitle</b>
+                </div>
+                <div class="col-2">
+                    <b>MobilePhone</b>
                 </div>
             </div>
         </li>
-    }
-</ul>
+        @foreach (var contact in Model)
+        {
+            <li class="list-group-item bg-transparent">
+                <div class="row">
+                    <div class="col-2">
+                        <p id="name">@contact.Name</p>
+                    </div>
+                    <div class="col-2">
+                        <p id="birthdate">@contact.BirthDate</p>
+                    </div>
+                    <div class="col-2">
+                        <p id="job">@contact.JobTitle</p>
+                    </div>
+                    <div class="col-2">
+                        <p id="phone">@contact.MobilePhone</p>
+                    </div>
+                    <div class="col-2">
+                        <div type="button" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);" @*data-bs-toggle="modal" data-bs-target="#editModal"*@ id="edit" onclick="CallModal(@contact.Id)">
+                            Edit
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="btn" style="background-color: rgba(140, 40, 0, 1); color: rgba(255, 255, 255, 1);">
+                            <p>Delete</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+        }
+    </ul>
+</div>
+<div id="PartialModalForm">
+    <partial name="Components/_ModalForm" model="Model.First()"/>
+</div>
+<script type="text/javascript">
+function CallModal(contactId)
+{
+    $.ajax({
+        url: "@Url.Action("GetModal", "Home")",
+        data: { contactId: contactId },
+        type: "GET",
+        success: function (partialView) {
+               $("#PartialModalForm").html(partialView);
+               
+               let modal = new bootstrap.Modal(document.getElementById('editModal'), {});
+               modal.show();
+               
+        }
+    });
+}
+</script>
+</body>
+</html>
+
+

@@ -36,6 +36,7 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult UpdateContact(ContactViewModel contact)
     {
+
         _contacts.Update(_mapper.Map<ContactViewModel, ContactDTO>(contact));
         _contacts.Save();
         return RedirectToAction("Index");
@@ -47,5 +48,13 @@ public class HomeController : Controller
         _contacts.Delete(contactId);
         _contacts.Save();
         return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult GetModal(int contactId)
+    {
+        var contact = _mapper.Map<ContactDTO, ContactViewModel>(_contacts.GetById(contactId));
+
+        return PartialView("Components/_ModalForm", contact);
     }
 }

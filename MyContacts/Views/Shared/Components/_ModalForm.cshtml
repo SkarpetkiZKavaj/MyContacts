@@ -1,0 +1,35 @@
+@model ContactViewModel
+
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Home" asp-action="UpdateContact" method="post">
+                    <input asp-for="@Model.Id" type="hidden" value="@Model.Id">
+                    
+                    <label asp-for="@Model.Name">Name</label>
+                    <input asp-for="@Model.Name" id="input_name">
+
+                    <label asp-for="@Model.BirthDate">BirthDate</label>
+                    <input asp-for="@Model.BirthDate" id="input_birthdate">
+
+                    <label asp-for="@Model.JobTitle">JobTitle</label>
+                    <input asp-for="@Model.JobTitle" id="input_job">
+
+                    <label asp-for="@Model.MobilePhone">MobilePhone</label>
+                    <input asp-for="@Model.MobilePhone" id="input_phone">
+
+                    <button type="submit" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);">Save</button>
+                </form>       
+            </div>
+            <div class="modal-footer">
+            
+            </div>
+        </div>
+    </div>
+</div>
+
