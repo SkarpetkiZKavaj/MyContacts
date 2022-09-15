@@ -24,7 +24,6 @@ public class HomeController : Controller
         var contacts = _mapper.Map<IEnumerable<ContactDTO>, IEnumerable<ContactViewModel>>(_contacts.GetAll());
         return View(contacts);
     }
-
     [HttpPost]
     public IActionResult AddContact(ContactViewModel contact)
     {
@@ -55,6 +54,9 @@ public class HomeController : Controller
     {
         var contact = _mapper.Map<ContactDTO, ContactViewModel>(_contacts.GetById(contactId));
 
-        return PartialView("Components/_ModalForm", contact);
+        if (contact is not null)
+            return PartialView("Components/_ModalForm", contact);
+        
+        return PartialView("Components/_ModalForm", new ContactViewModel(){Id = -1});
     }
 }

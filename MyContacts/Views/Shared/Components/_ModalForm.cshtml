@@ -7,10 +7,20 @@
                 <h5 class="modal-title">Edit contact</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            
+            @{
+                string asctionName = Model.Id == -1 ? "AddContact" : "UpdateContact";   
+            }
             <div class="modal-body">
-                <form asp-controller="Home" asp-action="UpdateContact" method="post">
-                    <input asp-for="@Model.Id" type="hidden" value="@Model.Id">
+                <form asp-controller="Home" asp-action=@asctionName method="post">
                     
+                    @{
+                        if (asctionName == "UpdateContact")
+                        {
+                            <input asp-for="@Model.Id" type="hidden" value="@Model.Id">
+                        }
+                    }
+
                     <label asp-for="@Model.Name">Name</label>
                     <input asp-for="@Model.Name" id="input_name">
 
@@ -24,7 +34,7 @@
                     <input asp-for="@Model.MobilePhone" id="input_phone">
 
                     <button type="submit" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);">Save</button>
-                </form>       
+                </form>
             </div>
             <div class="modal-footer">
             

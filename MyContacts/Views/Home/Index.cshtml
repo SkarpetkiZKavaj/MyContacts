@@ -31,7 +31,7 @@
         </li>
         @foreach (var contact in Model)
         {
-            <li class="list-group-item bg-transparent">
+            <li class="list-group-item bg-transparent" >
                 <div class="row">
                     <div class="col-2">
                         <p id="name">@contact.Name</p>
@@ -46,20 +46,27 @@
                         <p id="phone">@contact.MobilePhone</p>
                     </div>
                     <div class="col-2">
-                        <div type="button" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);" @*data-bs-toggle="modal" data-bs-target="#editModal"*@ id="edit" onclick="CallModal(@contact.Id)">
+                        <div type="button" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);" id="edit" onclick="CallModal(@contact.Id)">
                             Edit
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="btn" style="background-color: rgba(140, 40, 0, 1); color: rgba(255, 255, 255, 1);">
+                        <div type="button" class="btn" style="background-color: rgba(140, 40, 0, 1); color: rgba(255, 255, 255, 1);" id="delete" onclick="DeleteContact(@contact.Id)">
                             <p>Delete</p>
                         </div>
                     </div>
                 </div>
             </li>
-            
         }
     </ul>
+    <hr/>
+    <div class="row">
+        <div class="col-2">
+            <div type="button" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);" id="add" onclick="CallModal()">
+                Add contact
+            </div>
+        </div>
+    </div>
 </div>
 <div id="PartialModalForm">
     <partial name="Components/_ModalForm" model="Model.First()"/>
@@ -78,6 +85,15 @@ function CallModal(contactId)
                modal.show();
                
         }
+    });
+}
+
+function DeleteContact(contactId)
+{
+    $.ajax({
+        url: "@Url.Action("DeleteContact", "Home")",
+        data: {contactId: contactId},
+        type: "POST",
     });
 }
 </script>
