@@ -72,30 +72,147 @@
     <partial name="Components/_ModalForm" model="Model.First()"/>
 </div>
 <script type="text/javascript">
-function CallModal(contactId)
-{
-    $.ajax({
-        url: "@Url.Action("GetModal", "Home")",
-        data: { contactId: contactId },
-        type: "GET",
-        success: function (partialView) {
-               $("#PartialModalForm").html(partialView);
-               
-               let modal = new bootstrap.Modal(document.getElementById('editModal'), {});
-               modal.show();
-               
-        }
-    });
-}
+    function CallModal(contactId)
+    {
+        $.ajax({
+            url: "@Url.Action("GetModal", "Home")",
+            data: { contactId: contactId },
+            type: "GET",
+            success: function (partialView) {
+                $("#PartialModalForm").html(partialView);
+    
+                let modal = new bootstrap.Modal(document.getElementById('editModal'), {});
+                modal.show();
+    
+                document.getElementById("contactForm").addEventListener("submit", function (e) {
+                    let name = document.forms["contactForm"]["name"],
+                        birthDate = document.forms["contactForm"]["birthDate"],
+                        jobTitle = document.forms["contactForm"]["jobTitle"],
+                        mobilePhone = document.forms["contactForm"]["mobilePhone"];
 
-function DeleteContact(contactId)
-{
-    $.ajax({
-        url: "@Url.Action("DeleteContact", "Home")",
-        data: {contactId: contactId},
-        type: "POST",
-    });
-}
+                    e.preventDefault();
+
+                    let isNameValid = checkTextField(name),
+                        isBirthDateValid = checkBirthDate(birthDate),
+                        isJobTitleValid = checkTextField(jobTitle),
+                        isMobilePhoneValid = checkPhoneNumber(mobilePhone);
+
+                    if (isNameValid && isBirthDateValid && isJobTitleValid && isMobilePhoneValid)
+                    {
+                        document.forms["contactForm"].submit();
+                    }
+                });
+            }
+        });
+    }
+        
+    function DeleteContact(contactId)
+    {
+        $.ajax({
+            url: "@Url.Action("DeleteContact", "Home")",
+            data: {contactId: contactId},
+            type: "POST",
+        });
+    }
+    
+    function isRequired (value) 
+    {
+        return value == '' ? false : true;
+    }
+    
+    function isBirthDateValid (bd) 
+    {
+        const re = /\d\W\d\W\d{4}/;
+        return re.test(bd);
+    }
+    
+    function isPhoneNumberValid (pn) 
+    {
+        const re = /\+\d{3}\-(\d{2})?\-\d{3}\-\d{2}\-\d{2}/;
+        return re.test(pn);
+    }
+    
+    function showError (input, message)
+    {
+        const formField = input.parentElement;
+    
+        formField.classList.remove('success');
+        formField.classList.add('error');
+    
+        const error = formField.querySelector('small');
+
+        error.textContent = message;
+    }
+    
+    function showSuccess (input)
+    {
+        const formField = input.parentElement;
+    
+        formField.classList.remove('error');
+        formField.classList.add('success');
+    
+        const error = formField.querySelector('small');
+        error.textContent = '';
+    }
+    
+    function checkPhoneNumber(phone)
+    {
+        let valid = false;
+        
+        if(!isRequired(phone.value))
+        {
+            showError(phone, "PhoneNumber is a required field!");
+        }
+        else if(!isPhoneNumberValid(phone.value))
+        {
+            showError(phone, "PhoneNumber must be in format +***-**-***-**-**");
+        }
+        else
+        {
+            showSuccess(phone);
+            valid = true;
+        }
+                
+        return valid;
+    }
+    
+    function checkBirthDate(birthDate)
+    {
+        let valid = false;
+        
+        if(!isRequired(birthDate.value))
+        {
+            showError(birthDate, "BirthDate is a required field!");
+        }
+        else if(!isBirthDateValid(birthDate.value))
+        {
+            showError(birthDate, "BirthDate must be in format *.*.****");
+        }
+        else
+        {
+            showSuccess(birthDate);
+            valid = true;
+        }
+        
+        return valid;
+    }
+    
+    function checkTextField(text)
+    {
+        let valid = false;
+    
+        if (!isRequired(text.value))
+        {
+            showError(text, "This field is a required!");
+        }
+        else
+        {
+            showSuccess(text);
+            valid = true;
+        }
+    
+        return valid;
+    }
 </script>
 </body>
 </html>

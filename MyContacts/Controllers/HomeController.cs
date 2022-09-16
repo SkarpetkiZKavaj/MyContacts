@@ -50,13 +50,18 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public IActionResult GetModal(int contactId)
+    public IActionResult GetModal(int? contactId)
     {
-        var contact = _mapper.Map<ContactDTO, ContactViewModel>(_contacts.GetById(contactId));
+        ContactViewModel contact;
+        if (contactId is null)
+        {
+            contact = new ContactViewModel() { toUpdate = false };
+        }
+        else
+        {
+            contact = _mapper.Map<ContactDTO, ContactViewModel>(_contacts.GetById(contactId.Value));
+        }
 
-        if (contact is not null)
-            return PartialView("Components/_ModalForm", contact);
-        
-        return PartialView("Components/_ModalForm", new ContactViewModel(){Id = -1});
+        return PartialView("Components/_ModalForm", contact);
     }
 }
