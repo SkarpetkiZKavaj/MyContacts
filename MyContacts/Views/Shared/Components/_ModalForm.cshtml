@@ -1,0 +1,76 @@
+@model ContactViewModel
+
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"  style="background-color: rgba(241, 237, 232, 1);">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @{
+                string asctionName = Model.toUpdate ? "UpdateContact" : "AddContact" ;   
+            }
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-control" id="contactForm"  asp-controller="Home" asp-action=@asctionName method="post" style="background-color: transparent" >
+                                @{
+                                    if (asctionName == "UpdateContact")
+                                    {
+                                        <input asp-for="@Model.Id" type="hidden" value="@Model.Id">
+                                    }
+                                }
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="input_name">Name</label>
+                                            <input class="form-control" name="name" asp-for="@Model.Name" id="input_name">
+                                            <small></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="input_birthdate">BirthDate</label>
+                                            <input class="form-control" name="birthDate" asp-for="@Model.BirthDate" id="input_birthdate">
+                                            <small></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="input_job">JobTitle</label>
+                                            <input class="form-control" name="jobTitle" asp-for="@Model.JobTitle" id="input_job">
+                                            <small></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="input_phone">MobilePhone</label>
+                                            <input class="form-control" name="mobilePhone" asp-for="@Model.MobilePhone" id="input_phone">
+                                            <small></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <button type="submit" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            
+            </div>
+        </div>
+    </div>
+</div>
+
