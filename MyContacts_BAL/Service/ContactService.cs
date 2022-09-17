@@ -1,50 +1,62 @@
 using AutoMapper;
 using MyContacts_BAL.DTO;
 using MyContacts_BAL.Interface;
-using MyContacts_DAL.Interface;
+using MyContacts_DAL;
 using MyContacts_DAL.Models;
 
 namespace MyContacts_BAL.Service;
 
-public class ContactService : IService
+public class ContactService : IDisposable ,IService
 {
+    private bool disposed = false;
     private readonly IMapper _mapper;
+    private IUnitOfWork Database { get; set; }
 
-    private IRepository Database { get; set; }
-
-    public ContactService(IRepository repository, IMapper mapper)
+    public ContactService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _mapper = mapper;
-        Database = repository;
+        Database = unitOfWork;
     }
 
     public void Create(ContactDTO contact)
     {
-        Database.Create(_mapper.Map<ContactDTO, Contact>(contact));
+        Database.ContactRepository.Create(_mapper.Map<ContactDTO, Contact>(contact));
     }
 
     public IEnumerable<ContactDTO> GetAll()
     {
-        return _mapper.Map<IEnumerable<Contact>, IEnumerable<ContactDTO>>(Database.GetAll());
+        return _mapper.Map<IEnumerable<Contact>, IEnumerable<ContactDTO>>(Database.ContactRepository.GetAll());
     }
 
     public ContactDTO GetById(int id)
     {
-        return _mapper.Map<Contact, ContactDTO>(Database.GetById(id));
+        return _mapper.Map<Contact, ContactDTO>(Database.ContactRepository.GetById(id));
     }
 
     public void Update(ContactDTO contact)
     {
-        Database.Update(_mapper.Map<ContactDTO, Contact>(contact));
+        Database.ContactRepository.Update(_mapper.Map<ContactDTO, Contact>(contact));
     }
 
     public void Delete(int id)
     {
-        Database.Delete(id);
+        Database.ContactRepository.Delete(id);
     }
 
-    public void Save()
+    protected virtual void Dispose(bool disposing)
     {
-        Database.Save();
+        if (!disposed)
+            if (disposing)
+            {
+                Database.Dispose();
+            }
+
+        this.disposed = true;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 }

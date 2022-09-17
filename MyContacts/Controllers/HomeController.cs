@@ -28,8 +28,7 @@ public class HomeController : Controller
     public IActionResult AddContact(ContactViewModel contact)
     {
         _contacts.Create(_mapper.Map<ContactViewModel, ContactDTO>(contact));
-        _contacts.Save();
-        return RedirectToAction("Index");
+        return Ok();
     }
 
     [HttpPost]
@@ -37,16 +36,14 @@ public class HomeController : Controller
     {
 
         _contacts.Update(_mapper.Map<ContactViewModel, ContactDTO>(contact));
-        _contacts.Save();
-        return RedirectToAction("Index");
+        return Ok();
     }
 
     [HttpPost]
     public IActionResult DeleteContact(int contactId)
     {
         _contacts.Delete(contactId);
-        _contacts.Save();
-        return RedirectToAction("Index");
+        return Ok();
     }
 
     [HttpGet]

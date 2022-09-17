@@ -10,7 +10,7 @@ public class ContactViewModel
 
     public string? JobTitle { get; set; }
 
-    public DateOnly BirthDate { get; set; }
+    public string BirthDate { get; set; }
 
     public bool toUpdate { get; set; } = true;
 }
