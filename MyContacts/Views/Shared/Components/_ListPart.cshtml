@@ -1,0 +1,28 @@
+@model ContactViewModel
+
+<li class="list-group-item bg-transparent" id="@Model.GetHashCode()">
+    <div class="row">
+        <div class="col-2">
+            <p id="name">@Model.Name</p>
+        </div>
+        <div class="col-2">
+            <p id="birthdate">@Model.BirthDate</p>
+        </div>
+        <div class="col-2">
+            <p id="job">@Model.JobTitle</p>
+        </div>
+        <div class="col-2">
+            <p id="phone">@Model.MobilePhone</p>
+        </div>
+        <div class="col-2">
+            <div type="button" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);" id="edit" onclick="CallModal(@Model.Id)">
+                Edit
+            </div>
+        </div>
+        <div class="col-2">
+            <div type="button" class="btn" style="background-color: rgba(140, 40, 0, 1); color: rgba(255, 255, 255, 1);" id="delete" onclick="DeleteContact(@Model.Id, @Model.GetHashCode())">
+                <p>Delete</p>
+            </div>
+        </div>
+    </div>
+</li>

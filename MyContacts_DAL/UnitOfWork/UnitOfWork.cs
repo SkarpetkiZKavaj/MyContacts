@@ -29,12 +29,14 @@ public class UnitOfWork : IDisposable, IUnitOfWork
     {
         if (!disposed)
             if (disposing)
-            {
-                context.SaveChanges();
                 context.Dispose();
-            }
-
+        
         this.disposed = true;
+    }
+
+    public void Save()
+    {
+        context.SaveChanges();
     }
 
     public void Dispose()

@@ -28,7 +28,7 @@ public class HomeController : Controller
     public IActionResult AddContact(ContactViewModel contact)
     {
         _contacts.Create(_mapper.Map<ContactViewModel, ContactDTO>(contact));
-        return Ok();
+        return RedirectToAction("Index");
     }
 
     [HttpPost]
@@ -36,7 +36,7 @@ public class HomeController : Controller
     {
 
         _contacts.Update(_mapper.Map<ContactViewModel, ContactDTO>(contact));
-        return Ok();
+        return RedirectToAction("Index");
     }
 
     [HttpPost]
@@ -50,6 +50,7 @@ public class HomeController : Controller
     public IActionResult GetModal(int? contactId)
     {
         ContactViewModel contact;
+        
         if (contactId is null)
         {
             contact = new ContactViewModel() { toUpdate = false };

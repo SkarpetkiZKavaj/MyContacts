@@ -6,7 +6,7 @@ function isRequired (value)
 function isBirthDateValid (bd)
 {
     console.log(bd)
-    const re = /\d\d?\/\d\d?\/\d{4}/;
+    const re = /(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(\d{3}[1-9])/;
     return re.test(bd);
 }
 
@@ -70,7 +70,7 @@ function checkBirthDate(birthDate)
     }
     else if(!isBirthDateValid(birthDate.value))
     {
-        showError(birthDate, "BirthDate must be in format d/M/yyyy");
+        showError(birthDate, "BirthDate must be in format MM/dd/yyyy");
     }
     else
     {

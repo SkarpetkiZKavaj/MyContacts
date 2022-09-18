@@ -21,6 +21,7 @@ public class ContactService : IDisposable ,IService
     public void Create(ContactDTO contact)
     {
         Database.ContactRepository.Create(_mapper.Map<ContactDTO, Contact>(contact));
+        Database.Save();
     }
 
     public IEnumerable<ContactDTO> GetAll()
@@ -36,11 +37,13 @@ public class ContactService : IDisposable ,IService
     public void Update(ContactDTO contact)
     {
         Database.ContactRepository.Update(_mapper.Map<ContactDTO, Contact>(contact));
+        Database.Save();
     }
 
     public void Delete(int id)
     {
         Database.ContactRepository.Delete(id);
+        Database.Save();
     }
 
     protected virtual void Dispose(bool disposing)

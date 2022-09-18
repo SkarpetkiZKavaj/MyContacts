@@ -19,7 +19,7 @@ public class ContactProfile : Profile
         CreateMap<ContactDTO, ContactViewModel>().ReverseMap()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => DateOnly.ParseExact(src.BirthDate, "d/M/yyyy")))
+            .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => DateOnly.ParseExact(src.BirthDate, "MM/dd/yyyy")))
             .ForMember(dest => dest.JobTitle, opt => opt.MapFrom(src => src.JobTitle))
             .ForMember(dest => dest.MobilePhone, opt => opt.MapFrom(src => src.MobilePhone));
     }

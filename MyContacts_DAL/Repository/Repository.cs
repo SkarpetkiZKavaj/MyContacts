@@ -41,9 +41,4 @@ public class Repository
             _context.Contacts.Remove(contact);
         }
     }
-
-    public void Save()
-    {
-        _context.SaveChanges();
-    }
 }
