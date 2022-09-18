@@ -13,6 +13,4 @@ public interface IService
     public void Update(ContactDTO contact);
 
     public void Delete(int id);
-
-    public void Save();
 }

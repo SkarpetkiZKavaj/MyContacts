@@ -28,31 +28,31 @@ public class HomeController : Controller
     public IActionResult AddContact(ContactViewModel contact)
     {
         _contacts.Create(_mapper.Map<ContactViewModel, ContactDTO>(contact));
-        _contacts.Save();
         return RedirectToAction("Index");
     }
 
     [HttpPost]
     public IActionResult UpdateContact(ContactViewModel contact)
     {
-
         _contacts.Update(_mapper.Map<ContactViewModel, ContactDTO>(contact));
-        _contacts.Save();
         return RedirectToAction("Index");
     }
 
     [HttpPost]
-    public IActionResult DeleteContact(int contactId)
+    public IActionResult DeleteContact(int? contactId)
     {
-        _contacts.Delete(contactId);
-        _contacts.Save();
-        return RedirectToAction("Index");
+        if (contactId is null)
+            return NotFound();
+        
+        _contacts.Delete(contactId.Value);
+        return Ok();
     }
 
     [HttpGet]
     public IActionResult GetModal(int? contactId)
     {
         ContactViewModel contact;
+        
         if (contactId is null)
         {
             contact = new ContactViewModel() { toUpdate = false };

@@ -1,20 +1,21 @@
 @model ContactViewModel
 
+@{
+    string asctionName = Model.toUpdate ? "UpdateContact" : "AddContact" ;   
+}
+
 <div class="modal fade" id="editModal">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content"  style="background-color: rgba(241, 237, 232, 1);">
+        <div class="modal-content" style="background-color: rgba(241, 237, 232, 1);">
             <div class="modal-header">
-                <h5 class="modal-title">Edit contact</h5>
+                <h5 class="modal-title">Input contact</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            @{
-                string asctionName = Model.toUpdate ? "UpdateContact" : "AddContact" ;   
-            }
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <form class="form-control" id="contactForm"  asp-controller="Home" asp-action=@asctionName method="post" style="background-color: transparent" >
+                            <form class="form-control" id="contactForm" asp-controller="Home" asp-action=@asctionName method="post" style="background-color: transparent">
                                 @{
                                     if (asctionName == "UpdateContact")
                                     {
@@ -66,9 +67,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-            
             </div>
         </div>
     </div>

@@ -1,11 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using MyContacts_DAL.EF;
-using MyContacts_DAL.Interface;
 using MyContacts_DAL.Models;
 
-namespace MyContacts_DAL.Repository;
+namespace MyContacts_DAL;
 
-public class Repository : IRepository
+public class Repository
 {
     private ContactsContext _context;
 
@@ -42,10 +40,5 @@ public class Repository : IRepository
         {
             _context.Contacts.Remove(contact);
         }
-    }
-
-    public void Save()
-    {
-        _context.SaveChanges();
     }
 }
