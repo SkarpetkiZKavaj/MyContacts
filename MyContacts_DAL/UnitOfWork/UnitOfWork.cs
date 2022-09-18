@@ -4,13 +4,13 @@ namespace MyContacts_DAL;
 
 public class UnitOfWork : IDisposable, IUnitOfWork
 {
-    private ContactsContext context;
-    private bool disposed = false;
-    private Repository contactRepository;
+    private ContactsContext _context;
+    private bool _disposed = false;
+    private Repository _contactRepository;
 
     public UnitOfWork(ContactsContext context)
     {
-        this.context = context;
+        this._context = context;
     }
 
 
@@ -18,25 +18,25 @@ public class UnitOfWork : IDisposable, IUnitOfWork
     {
         get
         {
-            if (contactRepository is null)
-                contactRepository = new Repository(context);
+            if (_contactRepository is null)
+                _contactRepository = new Repository(_context);
  
-            return contactRepository;
+            return _contactRepository;
         }
     }
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposed)
+        if (!_disposed)
             if (disposing)
-                context.Dispose();
+                _context.Dispose();
         
-        this.disposed = true;
+        this._disposed = true;
     }
 
     public void Save()
     {
-        context.SaveChanges();
+        _context.SaveChanges();
     }
 
     public void Dispose()

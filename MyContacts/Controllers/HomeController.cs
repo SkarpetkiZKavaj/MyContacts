@@ -34,15 +34,17 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult UpdateContact(ContactViewModel contact)
     {
-
         _contacts.Update(_mapper.Map<ContactViewModel, ContactDTO>(contact));
         return RedirectToAction("Index");
     }
 
     [HttpPost]
-    public IActionResult DeleteContact(int contactId)
+    public IActionResult DeleteContact(int? contactId)
     {
-        _contacts.Delete(contactId);
+        if (contactId is null)
+            return NotFound();
+        
+        _contacts.Delete(contactId.Value);
         return Ok();
     }
 

@@ -8,7 +8,7 @@ namespace MyContacts_BAL.Service;
 
 public class ContactService : IDisposable ,IService
 {
-    private bool disposed = false;
+    private bool _disposed = false;
     private readonly IMapper _mapper;
     private IUnitOfWork Database { get; set; }
 
@@ -48,13 +48,13 @@ public class ContactService : IDisposable ,IService
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposed)
+        if (!_disposed)
             if (disposing)
             {
                 Database.Dispose();
             }
 
-        this.disposed = true;
+        this._disposed = true;
     }
 
     public void Dispose()
