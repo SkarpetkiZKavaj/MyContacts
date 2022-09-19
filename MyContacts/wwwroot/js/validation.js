@@ -6,13 +6,13 @@ function isRequired (value)
 function isBirthDateValid (bd)
 {
     console.log(bd)
-    const re = /(0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(\d{3}[1-9])/;
+    const re = /^((0[1-9]|1[0-2])\/(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(\d{3}((?<!000)0$|[1-9])))$/;
     return re.test(bd);
 }
 
 function isPhoneNumberValid (pn)
 {
-    const re = /\+\d{3}\-(\d{2})?\-\d{3}\-\d{2}\-\d{2}/;
+    const re = /^(\+\d{3}\-(\d{2}\-)?\d{3}\-\d{2}\-\d{2})$/;
     return re.test(pn);
 }
 
