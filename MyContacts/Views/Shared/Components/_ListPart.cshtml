@@ -15,12 +15,12 @@
             <p id="phone">@Model.MobilePhone</p>
         </div>
         <div class="col-2">
-            <div type="button" class="btn" style="background-color: rgba(95, 50, 0, 1); color: rgba(255, 255, 255, 1);" id="edit" onclick="CallModal(@Model.Id)">
+            <div type="button" class="btn button" id="edit" onclick="CallModal(@Model.Id)">
                 Edit
             </div>
         </div>
         <div class="col-2">
-            <div type="button" class="btn" style="background-color: rgba(140, 40, 0, 1); color: rgba(255, 255, 255, 1);" id="delete" onclick="DeleteContact(@Model.Id, @Model.GetHashCode())">
+            <div type="button" class="btn redButton" id="delete" onclick="DeleteContact(@Model.Id, @Model.GetHashCode())">
                 <p>Delete</p>
             </div>
         </div>
