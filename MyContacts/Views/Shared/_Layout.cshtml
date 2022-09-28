@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/site.css"/>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="lib/jquery/dist/jquery-3.6.1.min.js"></script>
     <script src="js/validation.js"></script>
 </head>
-<body class="d-flex flex-column h-100" style="background-color: rgba(247, 245, 242, 1);">
+<body class="d-flex flex-column h-100 background">
 <header>
-    <nav class="navbar navbar-expand-md fixed-top shadow" style="background-color: rgba(241, 237, 232, 1);">
+    <nav class="navbar navbar-expand-md fixed-top shadow area" >
         <div class="px-3">
             <h2>MyContacts</h2>
         </div>
@@ -21,14 +22,14 @@
     <div class="container-fluid mt-5">
         <div class="row ">
             <div class="col-sm-12">
-                <div class="p-3 shadow" style="background-color: rgba(241, 237, 232, 1);">
+                <div class="p-3 shadow area">
                     @RenderBody()
                 </div>
             </div>
         </div>
     </div>
 </main>
-<footer class="footer mt-auto py-3 shadow-lg" style="background-color: rgba(241, 237, 232, 1);">
+<footer class="footer mt-auto py-3 shadow-lg area">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">

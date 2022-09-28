@@ -1,18 +1,17 @@
-html {
-  font-size: 14px;
+.button{
+  background-color: rgba(95, 50, 0, 1); 
+  color: rgba(255, 255, 255, 1);
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.redButton{
+  background-color: rgba(140, 40, 0, 1); 
+  color: rgba(255, 255, 255, 1);
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.area{
+  background-color: rgba(241, 237, 232, 1);
 }
 
-body {
-  margin-bottom: 60px;
+.background{
+  background-color: rgba(247, 245, 242, 1);
 }
